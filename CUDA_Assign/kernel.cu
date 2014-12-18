@@ -64,7 +64,7 @@ int main()
 	namedWindow("Source", WINDOW_AUTOSIZE);
 	namedWindow("Dest", WINDOW_AUTOSIZE);
 
-	cout << "Calculating gaussian kernel on GPU";
+	cout << "Calculating gaussian kernel on GPU\n";
 
 	// Keep processing frames - Do CPU First
 	while(gpu_frames > 0)
@@ -102,10 +102,11 @@ int main()
 		waitKey(1);
 		gpu_frames--;
 	}
-	cout << "Computed " << total_frames << " frames in " << g_timer.Elapsed() << " msecs.\n";
+	cout << "Computed " << total_frames << " frames in " << gpuTime << " msecs.\n";
+	cout << "The GPU is capturing at a rate of " << 60 / (gpuTime / 1000) << " frames per second\n";
 	
 	
-	cout << "Calculating gaussian kernel on CPU";
+	cout << "Calculating gaussian kernel on CPU\n";
 	// Keep processing frames - Do CPU now
 	while(cpu_frames > 0)
 	{
@@ -135,7 +136,8 @@ int main()
 		waitKey(1);
 		cpu_frames--;
 	}
-	cout << "Computed " << total_frames << " frames in " << c_timer.Elapsed() << " msecs.\n";
+	cout << "Computed " << total_frames << " frames in " << cpuTime << " msecs.\n";
+	cout << "The CPU is capturing at a rate of " << 60 / (cpuTime / 1000) << "frames per second\n";
 
 	cout << "The GPU is " << (cpuTime / gpuTime) << " times faster than the CPU.\n";
 	cout << "\n\nResult set processed, terminating...";
