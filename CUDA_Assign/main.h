@@ -62,7 +62,8 @@ void beginStream(
 					unsigned char **d_greenBlurred,				// Device green channel blur 
 					unsigned char **d_blueBlurred,				// Device blue channel blur
 					float **h_filter, int *filterWidth,			// The width we want our filter to be
-					cv::Mat src									// The source frame we just captured
+					cv::Mat src,								// The source frame we just captured
+					const bool runningGPU                       // Are we allocating memory on the device/host?
 				);
 
 // Clean up any resources on the host

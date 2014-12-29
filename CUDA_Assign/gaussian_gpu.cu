@@ -142,9 +142,9 @@ void gaussian_gpu(
                   )
 {
   //Set reasonable block size to process the image (1024 threads per block here)
-  const dim3 blockSize(8, 8);
+  const dim3 blockSize(32, 32);
   //Compute correct grid size from the image size and and block size.
-  const dim3 gridSize(numCols/16, numRows/16);
+  const dim3 gridSize(numCols/blockSize.x + 1, numRows/blockSize.y + 1);
 
   //Launch a kernel to separate the RGBA image into different color channels
   separateChannels<<<gridSize, blockSize>>>(
