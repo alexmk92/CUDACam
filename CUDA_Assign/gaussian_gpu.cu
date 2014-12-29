@@ -159,10 +159,6 @@ void gaussian_gpu(
   // Wait for device computation to finish and check for any errors
   cudaDeviceSynchronize(); cudaGetLastError();
 
-  // Call cudaDeviceSynchronize(), then call checkCudaErrors() immediately after
-  // launching your kernel to make sure that you didn't make any mistakes.
-  cudaDeviceSynchronize(); cudaGetLastError();
-
   // Call the convolution kernel 3 times, for R, G and B
   gaussian_kernel<<<gridSize, blockSize>>>(
                                             d_red,
